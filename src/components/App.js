@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
-import { Home } from './';
+import { Home, AccountForm } from './';
 
 const App = () => {
   return (
@@ -10,6 +10,7 @@ const App = () => {
       </nav>
       <Routes>
         <Route path='/' element={<Home />}/>
+        <Route exact path='/account/:method' element={<AccountForm />} />
       </Routes>
     </div>
   );
