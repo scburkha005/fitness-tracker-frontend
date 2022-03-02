@@ -1,15 +1,31 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import { Home, AccountForm } from './';
 
 const App = () => {
   const [token, setToken] = useState('');
 
+  //grab token from localStorage if it exists
+  useEffect(() => {
+    
+  }, [])
+
+  //set token into localStorage if it exists
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem('token', token);
+    }
+  }, [token])
+
   return (
     <div className="App">
       <nav className='navbar'>
-
+        {
+          token
+          ? <button>Log Out</button>
+          : <Link to='account/login'>Login</Link>
+        }
       </nav>
       <Routes>
         <Route path='/' element={<Home />}/>
