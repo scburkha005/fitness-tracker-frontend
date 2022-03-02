@@ -5,6 +5,7 @@ import * as api from '../api/usersApi'
 
 const AccountForm = ({ setToken }) => {
   const [userFields, setUserFields] = useState({username: '', password: ''})
+  const [message, setMessage] = useState('');
   const { method } = useParams();
   const navigate = useNavigate();
   const accountMethod = method === 'login' ? 'Log In' : 'Register';
@@ -14,6 +15,7 @@ const AccountForm = ({ setToken }) => {
     onSuccess: ({message, token, user}) => {
       console.log(message, token, user);
       setToken(token);
+      setMessage(message);
     }
   });
 
@@ -29,6 +31,7 @@ const AccountForm = ({ setToken }) => {
   return (
     <form className='account-form' onSubmit={handleSubmit}>
       <h2>{accountMethod}</h2>
+      {message && <div>{message}</div>}
       <input placeholder='username' value={username} onChange={e => setUserFields({...userFields, username: e.target.value})}/>
       <input placeholder='password' type='password' value={password} onChange={e => setUserFields({...userFields, password: e.target.value})}/>
       <button>{accountMethod}</button>
