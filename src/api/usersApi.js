@@ -16,3 +16,16 @@ export const register = async ({ username, password }) => {
     console.error(err);
   }
 }
+
+export const login = async ({ username, password }) =>  {
+  try {
+    const { data } = await api.post('/users/login', {
+      username,
+      password
+    });
+
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
