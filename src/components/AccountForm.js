@@ -16,6 +16,7 @@ const AccountForm = ({ setToken }) => {
       console.log(message, token, user);
       setToken(token);
       setMessage(message);
+      navigate('/');
     }
   });
   if (isLoading) {
@@ -28,6 +29,11 @@ const AccountForm = ({ setToken }) => {
     mutate(userFields);
   }
 
+  const handleChange = async (e) => {
+    const { placeholder, value } = e.target;
+    setUserFields({...userFields, [placeholder]: value});
+  }
+
   //destructure our fields state
   const { username, password } = userFields;
   console.log('username', username, 'password', password);
@@ -35,8 +41,8 @@ const AccountForm = ({ setToken }) => {
     <form className='account-form' onSubmit={handleSubmit}>
       <h2>{accountMethod}</h2>
       {message && <div>{message}</div>}
-      <input placeholder='username' value={username} onChange={e => setUserFields({...userFields, username: e.target.value})}/>
-      <input placeholder='password' type='password' value={password} onChange={e => setUserFields({...userFields, password: e.target.value})}/>
+      <input placeholder='username' value={username} onChange={handleChange}/>
+      <input placeholder='password' type='password' value={password} onChange={handleChange}/>
       <button>{accountMethod}</button>
       <div>
         {
