@@ -11,13 +11,16 @@ const AccountForm = ({ setToken }) => {
   const accountMethod = method === 'login' ? 'Log In' : 'Register';
 
   //dynamically calls login or register based on :method
-  const { mutate } = useMutation(api[method], {
+  const { mutate, isLoading } = useMutation(api[method], {
     onSuccess: ({message, token, user}) => {
       console.log(message, token, user);
       setToken(token);
       setMessage(message);
     }
   });
+  if (isLoading) {
+    return "Loading..."
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
