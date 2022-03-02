@@ -8,7 +8,9 @@ const App = () => {
 
   //grab token from localStorage if it exists
   useEffect(() => {
-    
+    if (localStorage.getItem('token')) {
+      setToken(localStorage.getItem('token'));
+    }
   }, [])
 
   //set token into localStorage if it exists
