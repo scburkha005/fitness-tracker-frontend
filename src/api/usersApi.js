@@ -13,7 +13,7 @@ export const register = async ({ username, password }) => {
 
     return data;
   } catch (err) {
-    console.error(err);
+    throw err;
   }
 }
 
@@ -26,6 +26,6 @@ export const login = async ({ username, password }) =>  {
 
     return data;
   } catch (err) {
-    console.error(err);
+    throw err;
   }
 }
