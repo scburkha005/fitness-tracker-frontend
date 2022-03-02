@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import * as api from '../api/usersApi'
@@ -10,14 +10,20 @@ const AccountForm = ({ setToken }) => {
   const navigate = useNavigate();
   const accountMethod = method === 'login' ? 'Log In' : 'Register';
 
+  //reset values of userFields when switching between login/register
+  useEffect(() => {
+    setUserFields({
+      username: '',
+      password: ''
+    });
+  }, [method])
+
   //dynamically calls login or register based on :method
   const { mutate, isLoading } = useMutation(api[method], {
     onError: ({ data: { message }}) => {
-      console.log(message)
       setMessage(message);
     },
     onSuccess: ({ message, token }) => {
-      console.log(message, token);
       setToken(token);
       setMessage(message);
       navigate('/routines');
@@ -40,7 +46,6 @@ const AccountForm = ({ setToken }) => {
 
   //destructure our fields state
   const { username, password } = userFields;
-  console.log('username', username, 'password', password);
   return (
     <form className='account-form' onSubmit={handleSubmit}>
       <h2>{accountMethod}</h2>
