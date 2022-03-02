@@ -12,8 +12,8 @@ export const register = async ({ username, password }) => {
     });
 
     return data;
-  } catch (err) {
-    throw err;
+  } catch ({ response: error }) {
+    throw error;
   }
 }
 
@@ -25,7 +25,7 @@ export const login = async ({ username, password }) =>  {
     });
 
     return data;
-  } catch (err) {
-    throw err;
+  } catch ({ response: error }) {
+    throw error;
   }
 }
