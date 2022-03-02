@@ -1,7 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { Home, AccountForm } from './';
+import { Home, AccountForm, ButtonLogout } from './';
 
 const App = () => {
   const [token, setToken] = useState('');
@@ -23,7 +23,7 @@ const App = () => {
       <nav className='navbar'>
         {
           token
-          ? <button>Log Out</button>
+          ? <ButtonLogout setToken={setToken}/>
           : <Link to='account/login'>Login</Link>
         }
       </nav>
