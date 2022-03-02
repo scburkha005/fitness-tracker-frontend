@@ -4,8 +4,9 @@ const api = axios.create({
   baseURL: 'https://evening-wave-11430.herokuapp.com/api'
 })
 
-export const register = async (username, password) => {
+export const register = async ({ username, password }) => {
   try {
+    console.log('username', username, 'password', password)
     const { data } = await api.post('/users/register', {
       username,
       password
