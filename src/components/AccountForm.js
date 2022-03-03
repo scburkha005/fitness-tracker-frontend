@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useMutation } from 'react-query';
-import * as api from '../api/usersApi'
+import * as api from '../api/usersApi';
+import { updateState } from './utils';
 
 const AccountForm = ({ setToken }) => {
   const [userFields, setUserFields] = useState({username: '', password: ''})
@@ -40,8 +41,7 @@ const AccountForm = ({ setToken }) => {
   }
 
   const handleChange = async (e) => {
-    const { placeholder, value } = e.target;
-    setUserFields({...userFields, [placeholder]: value});
+    updateState(e, userFields, setUserFields);
   }
 
   //destructure our fields state
