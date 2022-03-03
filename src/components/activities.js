@@ -1,9 +1,10 @@
 import { useQuery } from 'react-query';
 import { fetchActivities } from '../api/activitiesApi';
+import ActivitiesSingle from './ActivitiesSingle';
 
 const Activities = () => {
 
-  const { data, isLoading } = useQuery('activities', async () => {
+  const { data: activities, isLoading } = useQuery('activities', async () => {
     const data = await fetchActivities();
     return data;
   });
@@ -11,9 +12,15 @@ const Activities = () => {
   if (isLoading) {
     return "Loading..."
   }
-  console.log(data)
+  console.log(activities)
   return (
-    <h2>hi</h2>
+    <>
+      {activities.length > 0 && activities.map((activity) => {
+        return (
+          <ActivitiesSingle activity={activity} />
+        )
+      })}
+    </>
   )
 }
 
