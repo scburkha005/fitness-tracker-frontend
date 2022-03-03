@@ -4,7 +4,7 @@ import ActivitiesSingle from './ActivitiesSingle';
 
 const Activities = () => {
 
-  const { data: activities, isLoading } = useQuery('activities', async () => {
+  const { data: activities, isLoading, error } = useQuery('activities', async () => {
     const data = await fetchActivities();
     return data;
   });
@@ -12,7 +12,15 @@ const Activities = () => {
   if (isLoading) {
     return "Loading..."
   }
-  console.log(activities)
+
+  if (error) {
+    return (
+      <>
+        <h2>Uh Oh! Something went wrong</h2>
+        <h2>{error.response.status}: {error.response.data.message} :[</h2>
+      </>
+      )
+  }
   return (
     <>
       {activities.length > 0 && activities.map((activity) => {
