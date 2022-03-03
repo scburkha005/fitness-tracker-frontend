@@ -4,7 +4,7 @@ const api = axios.create({
   baseURL: 'https://evening-wave-11430.herokuapp.com/api/activities'
 });
 
-export const fetchRoutines = async () => {
+export const fetchActivities = async () => {
   try {
     const { data } = await api.get('/');
 

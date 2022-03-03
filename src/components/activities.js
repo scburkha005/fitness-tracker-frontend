@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
-import { fetchRoutines } from '../api/activitiesApi';
+import { fetchActivities } from '../api/activitiesApi';
 
 const Activities = () => {
 
   const { data, isLoading } = useQuery('activities', async () => {
-    const data = await fetchRoutines();
+    const data = await fetchActivities();
     return data;
   });
 
