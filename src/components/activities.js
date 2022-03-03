@@ -6,10 +6,7 @@ import ActivitiesSingle from './ActivitiesSingle';
 const Activities = ({ token }) => {
   const navigate = useNavigate();
 
-  const { data: activities, isLoading, error } = useQuery('activities', async () => {
-    const data = await fetchActivities();
-    return data;
-  });
+  const { data: activities, isLoading, error } = useQuery('activities', async () => await fetchActivities());
 
   if (isLoading) {
     return "Loading..."
