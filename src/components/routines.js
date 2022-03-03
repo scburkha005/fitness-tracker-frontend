@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
-const callApi = () => {
-const [] = useState();
+const Routines = () => {
+
 
 return (
     <>
@@ -12,3 +12,4 @@ return (
 
 )
 }
+export default Routines;

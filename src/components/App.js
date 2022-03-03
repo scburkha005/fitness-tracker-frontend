@@ -1,7 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { Home, AccountForm, ButtonLogout } from './';
+import { Home, AccountForm, ButtonLogout, Routines } from './';
 
 const App = () => {
   const [token, setToken] = useState('');
@@ -32,6 +32,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route exact path='/account/:method' element={<AccountForm setToken={setToken}/>} />
+        <Route path='/routines' element={<Routines />}/>
       </Routes>
     </div>
   );
