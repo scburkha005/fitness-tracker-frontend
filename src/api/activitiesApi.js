@@ -13,3 +13,21 @@ export const fetchActivities = async () => {
     throw err;
   }
 }
+
+export const addActivity = async ({ token, name, description }) => {
+  try {
+    const { data } = await api({
+      url: '/',
+      method: 'post',
+      headers: {'Authorization': `Bearer ${token}`},
+      data: {
+        name,
+        description
+      }
+    });
+
+    return data;
+  } catch (err) {
+    throw err;
+  }
+}
