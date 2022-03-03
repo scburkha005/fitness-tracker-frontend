@@ -17,6 +17,10 @@ const ActivitiesForm = ({ token }) => {
   //api call handler
   const { mutate } = useMutation(api.addActivity, {
     onError: ({ data: { message }}) => {
+      //rebuild duplicate activity message
+      if (message === 'duplicate key value violates unique constraint "activities_name_key"') {
+        message = 'Activity already exists'
+      }
       setErrorMessage(message);
     },
     onSuccess: (data) => {
