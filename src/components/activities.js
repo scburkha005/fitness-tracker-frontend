@@ -17,7 +17,7 @@ const Activities = () => {
     <>
       {activities.length > 0 && activities.map((activity) => {
         return (
-          <ActivitiesSingle activity={activity} />
+          <ActivitiesSingle key={`${activity.id}-${activity.name}`}activity={activity} />
         )
       })}
     </>
