@@ -23,6 +23,7 @@ const App = () => {
   return (
     <div className="App">
       <nav className='navbar'>
+        <Link to='/activities'>Activities</Link>
         {
           token
           ? <ButtonLogout setToken={setToken}/>
