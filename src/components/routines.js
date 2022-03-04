@@ -1,12 +1,24 @@
 import React, {useState, useEffect} from "react";
+import {fetchRoutines} from '../api';
+import RoutineSingle from './routineSingle';
 const Routines = () => {
-
-
+    const [routines, setRoutines] = useState([])
+    const getRoutines = async () => {
+        setRoutines(await fetchRoutines())  
+    }
+    useEffect(() => {        
+        getRoutines()
+    }, [])
+    
 return (
     <>
-    <h3>Routine:</h3>
-    <h3>Goal:</h3>
-    <h3>Creator:</h3>
+    {routines.map(routine => {
+
+        
+        return (
+           <RoutineSingle key={routine.id} routine={routine}/>
+        )
+    })}
     </>
 
 
