@@ -1,15 +1,28 @@
 import { useParams } from "react-router";
 import { useQuery } from "react-query";
 import * as api from '../api/activitiesApi';
+import RoutineSingle from "./routineSingle";
 
 const RoutinesByActivity = () => {
   const { activityId } = useParams();
 
   const { data: routines, isLoading } = useQuery(['routinesByActivity', activityId], async () => await api.getRoutinesByActivity(activityId));
-  console.log('routines', routines)
+
+  if (isLoading) {
+    return "Loading..."
+  }
+
   return (
     <>
-      <div>{activityId}</div> 
+      {
+        routines?.length > 0 ?
+        routines.map((routine) => {
+          return (
+            <RoutineSingle routine={routine}/>
+          )
+        })
+        : <div>No Routines exist with that activity</div>
+      }
     </>
   )
 }
