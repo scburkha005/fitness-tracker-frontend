@@ -9,7 +9,7 @@ export const fetchActivities = async () => {
     const { data } = await api.get('/');
 
     return data;
-  } catch ({ response: err}) {
+  } catch ({ response: err }) {
     throw err;
   }
 }
@@ -27,7 +27,17 @@ export const addActivity = async ({ token, name, description }) => {
     });
 
     return data;
-  } catch ({ response: err}) {
+  } catch ({ response: err }) {
+    throw err;
+  }
+}
+
+export const getRoutinesByActivity = async (id) => {
+  try {
+    const { data } = await api.get(`/${id}/routines`);
+
+    return data;
+  } catch ({ response: err }) {
     throw err;
   }
 }
