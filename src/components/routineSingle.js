@@ -1,10 +1,10 @@
-const RoutineSingle = () => {
+const RoutineSingle = ({routine}) => {
 
 
 
 
     return (
-        <>
+        <div className="routine-single">
             <h3>Creator:</h3>
             <div>
                 {routine.creatorName}
@@ -17,7 +17,7 @@ const RoutineSingle = () => {
             <div>
                 {routine.goal}
             </div>
-        </>
+        </div>
 
 
 
