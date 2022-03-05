@@ -18,3 +18,17 @@ export const updateRoutine = async ({routineId, fields, token}) => {
     console.error(error);
   }
 }
+
+export const deleteRoutine = async (routineId, token) => {
+  try {
+    const { data } = await api({
+      method: 'delete',
+      url: `/${routineId}`,
+      headers: {'Authorization': `Bearer ${token}`},
+    });
+
+    return data;
+  } catch ({ response: error }) {
+    console.error(error);
+  }
+}
