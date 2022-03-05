@@ -2,9 +2,13 @@ import { useNavigate } from "react-router";
 import ActivitiesSingle from "./ActivitiesSingle";
 import './routineSingle.css';
 
-const RoutineSingle = ({routine, user}) => {
+const RoutineSingle = ({routine, user, setEditRoutine}) => {
     const navigate = useNavigate();
 
+    const handleEdit = async () => {
+        setEditRoutine(routine);
+        navigate(`/routines/edit/${routine.id}`);
+    }
     return (
         <>
             <div className="routine-single">
@@ -19,7 +23,7 @@ const RoutineSingle = ({routine, user}) => {
             </div>
             { user &&
             <form className="routine-single-button-form">
-                {user.id === routine.creatorId && <button onClick={() => navigate(`/routines/edit/${routine.id}`)} className='routine-single-edit-button'>Edit</button>}
+                {user.id === routine.creatorId && <button onClick={handleEdit} className='routine-single-edit-button'>Edit</button>}
                 {user.id === routine.creatorId && <button className='routine-single-delete-button'>Delete</button>}
             </form>
             }
