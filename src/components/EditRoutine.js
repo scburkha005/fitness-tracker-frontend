@@ -19,6 +19,7 @@ const EditRoutine = ({ routines, editRoutine, setEditRoutine, token }) => {
     }
     navigate('/routines')
   }
+
   return (
     <>
       <RoutinesForm handleSubmit={handleEdit} singleRoutine={editRoutine} setSingleRoutine={setEditRoutine}/>
