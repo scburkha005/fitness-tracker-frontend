@@ -37,7 +37,7 @@ const App = () => {
         <Link to='/activities'>Activities</Link>
         {
           token
-          ? <ButtonLogout setToken={setToken}/>
+          ? <ButtonLogout setToken={setToken} setUser={setUser}/>
           : <Link to='account/login'>Login</Link>
         }
       </nav>
