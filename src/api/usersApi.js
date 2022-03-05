@@ -29,3 +29,15 @@ export const login = async ({ username, password }) =>  {
     throw error;
   }
 }
+
+export const getUser = async ({ token }) => {
+  try {
+    const { data } = await api.get('/me', {
+      token
+    });
+
+    return data;
+  } catch ({ response: error }) {
+    throw error;
+  }
+}
