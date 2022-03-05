@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import { Home, AccountForm, ButtonLogout, Routines, Activities, AddActivity, MyRoutines, RoutinesByActivity, AddRoutine } from './';
 import { getUser } from '../api/usersApi';
+import RoutinesForm from './RoutinesForm';
+import EditRoutine from './EditRoutine';
 
 const App = () => {
   const [token, setToken] = useState('');
@@ -46,6 +48,7 @@ const App = () => {
         <Route exact path='/account/:method' element={<AccountForm setToken={setToken}/>} />
         <Route path='/routines' element={<Routines token={token} user={user}/>}/>
         <Route exact path='/routines/add' element={<AddRoutine />} />
+        <Route exact path='/routines/edit/:routineid' element={<EditRoutine />} />
         <Route path='/activities' element={<Activities token={token}/>} />
         <Route path='/myroutines' element={<MyRoutines token={token}/>} />
         <Route exact path='/activities/add' element={<AddActivity token={token}/>} />
