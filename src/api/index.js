@@ -1,10 +1,12 @@
 import axios from 'axios';
 
-const API_URL = 'https://evening-wave-11430.herokuapp.com/api';
+const api = axios.create({
+  baseURL: 'https://evening-wave-11430.herokuapp.com/api'
+})
 
 export const fetchRoutines = async () => {
   try {
-    const { data } = await axios.get(`${API_URL}/routines`);
+    const { data } = await api.get(`/routines`);
 
     return data;
   } catch (err) {

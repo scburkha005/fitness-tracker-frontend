@@ -1,8 +1,11 @@
 import React, {useState, useEffect} from "react";
+import { useNavigate } from 'react-router';
 import {fetchRoutines} from '../api';
 import RoutineSingle from './routineSingle';
-const Routines = () => {
+const Routines = ({token}) => {
+    const navigate = useNavigate();
     const [routines, setRoutines] = useState([])
+    
     const getRoutines = async () => {
         setRoutines(await fetchRoutines())  
     }
@@ -12,6 +15,9 @@ const Routines = () => {
     
 return (
     <>
+    {token && <button onClick={()=> {
+        navigate('/routines/add')
+    } }>Add Routine</button>}
     {routines.map(routine => {
 
         
