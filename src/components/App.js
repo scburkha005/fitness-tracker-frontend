@@ -1,7 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { Home, AccountForm, ButtonLogout, Routines, Activities, AddActivity, MyRoutines, RoutinesByActivity } from './';
+import { Home, AccountForm, ButtonLogout, Routines, Activities, AddActivity, MyRoutines, RoutinesByActivity, AddRoutine } from './';
 
 const App = () => {
   const [token, setToken] = useState('');
@@ -23,6 +23,7 @@ const App = () => {
   return (
     <div className="App">
       <nav className='navbar'>
+        <Link to='/routines'>Routines</Link>
         {
           token && <Link to='/myroutines'>My Routines</Link>
         }
@@ -36,7 +37,8 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route exact path='/account/:method' element={<AccountForm setToken={setToken}/>} />
-        <Route path='/routines' element={<Routines />}/>
+        <Route path='/routines' element={<Routines token={token}/>}/>
+        <Route exact path='/routines/add' element={<AddRoutine />} />
         <Route path='/activities' element={<Activities token={token}/>} />
         <Route path='/myroutines' element={<MyRoutines token={token}/>} />
         <Route exact path='/activities/add' element={<AddActivity token={token}/>} />

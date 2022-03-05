@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 
-const ActivitiesSingle = ({ activity: { id, name, description} }) => {
+const ActivitiesSingle = ({ activity: { id, name, description, count, duration } }) => {
   const navigate = useNavigate();
   //handle capitalization
   name = name.split(' ').map(word => {
@@ -11,6 +11,8 @@ const ActivitiesSingle = ({ activity: { id, name, description} }) => {
     <div className='singleActivity'>
       <div>Name: <span onClick={() => navigate(`/activities/${id}/routines`)}>{name}</span></div>
       <div>{`Description: ${description}`}</div>
+      {count && <div>{`Count: ${count}`}</div>}
+      {duration && <div>{`Duration: ${duration}`}</div>}
     </div>
   )
 }

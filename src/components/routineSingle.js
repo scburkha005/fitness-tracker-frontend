@@ -1,6 +1,12 @@
+import ActivitiesSingle from "./ActivitiesSingle";
+
+
 const RoutineSingle = ({routine}) => {
-
-
+    // Name:
+    // Description:
+    // Duration:
+    // Count:
+    console.log(routine)
 
 
     return (
@@ -17,6 +23,9 @@ const RoutineSingle = ({routine}) => {
             <div>
                 {routine.goal}
             </div>
+            {routine.activities.map(activity => {
+            return <ActivitiesSingle key={activity.id} activity={activity}/>
+           })}
         </div>
 
 
