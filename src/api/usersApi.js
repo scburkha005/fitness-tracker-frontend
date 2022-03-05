@@ -43,3 +43,16 @@ export const getUser = async (token) => {
     throw error;
   }
 }
+
+export const getRoutinesByUsername = async (username) => {
+  try {
+    const { data } = await api({
+      url: `/${username}/routines`,
+      method: 'get'
+    });
+
+    return data;
+  } catch ({ response: error }) {
+    throw error;
+  }
+}
