@@ -46,7 +46,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route exact path='/account/:method' element={<AccountForm setToken={setToken}/>} />
-        <Route path='/routines' element={<Routines token={token} user={user} routines={routines} setRoutines={setRoutines}/>}/>
+        <Route path='/routines' element={<Routines token={token} user={user} routines={routines} setRoutines={setRoutines} setEditRoutine={setEditRoutine}/>}/>
         <Route exact path='/routines/add' element={<AddRoutine routines={routines} setRoutines={setRoutines}/>} />
         <Route exact path='/routines/edit/:routineid' element={<EditRoutine routines={routines} editRoutine={editRoutine} setEditRoutine={setEditRoutine}/>} />
         <Route path='/activities' element={<Activities token={token}/>} />

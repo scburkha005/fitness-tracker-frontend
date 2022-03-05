@@ -4,7 +4,7 @@ import {fetchRoutines} from '../api';
 import RoutineSingle from './routineSingle';
 import './routines.css';
 
-const Routines = ({token, user, routines, setRoutines}) => {
+const Routines = ({token, user, routines, setRoutines, setEditRoutine}) => {
     const navigate = useNavigate();
     
     const getRoutines = async () => {
@@ -23,7 +23,7 @@ return (
 
         
         return (
-           <RoutineSingle key={routine.id} routine={routine} user={user}/>
+           <RoutineSingle key={routine.id} routine={routine} user={user} setEditRoutine={setEditRoutine}/>
         )
     })}
     </div>
