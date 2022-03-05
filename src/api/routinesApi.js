@@ -7,12 +7,10 @@ const api = axios.create({
 export const updateRoutine = async ({routineId, fields, token}) => {
   try {
     const { data } = await api({
-      method: 'post',
+      method: 'patch',
       url: `/${routineId}`,
       headers: {'Authorization': `Bearer ${token}`},
-      body: {
-        fields
-      }
+      data: fields
     });
 
     return data;
