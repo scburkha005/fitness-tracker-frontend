@@ -4,6 +4,7 @@ import './routineSingle.css';
 
 const RoutineSingle = ({routine, user, setEditRoutine}) => {
     const navigate = useNavigate();
+    const {name, goal, creatorName} = routine;
 
     const handleEdit = async () => {
         setEditRoutine(routine);
@@ -13,13 +14,13 @@ const RoutineSingle = ({routine, user, setEditRoutine}) => {
         <>
             <div className="routine-single">
                 <div>Name:</div>
-                <div>{routine.name}</div>
+                <div>{name}</div>
                 <div>Goal:</div>
-                <div>{routine.goal}</div>
-                {routine.activities.map(activity => {
+                <div>{goal}</div>
+                {routine.activities?.map(activity => {
                 return <ActivitiesSingle key={activity.id} activity={activity}/>
             })}
-                <div>Created By: {routine.creatorName}</div>
+                <div>Created By: {creatorName}</div>
             </div>
             { user &&
             <form className="routine-single-button-form">
