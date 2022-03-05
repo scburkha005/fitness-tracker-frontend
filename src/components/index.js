@@ -7,5 +7,4 @@ export { default as AddActivity } from './AddActivity.js';
 export { default as MyRoutines } from './MyRoutines.js';
 export { default as RoutinesByActivity } from './RoutinesByActivity.js';
 export { default as AddRoutine } from './AddRoutine.js';
-export { default as RoutinesForm } from './RoutinesForm.js';
 export { default as EditRoutine } from './EditRoutine.js';
