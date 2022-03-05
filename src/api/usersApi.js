@@ -30,10 +30,12 @@ export const login = async ({ username, password }) =>  {
   }
 }
 
-export const getUser = async ({ token }) => {
+export const getUser = async (token) => {
   try {
-    const { data } = await api.get('/me', {
-      token
+    const { data } = await api({
+      url: '/me',
+      method: 'get',
+      headers: {'Authorization': `Bearer ${token}`}
     });
 
     return data;
