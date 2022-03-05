@@ -1,8 +1,9 @@
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { updateRoutine } from "../api/routinesApi";
 import RoutinesForm from "./RoutinesForm";
 
 const EditRoutine = ({ routines, editRoutine, setEditRoutine, token }) => {
+  const navigate = useNavigate();
   let { routineid: routineId } = useParams();
   const { name, goal } = editRoutine;
   routineId = routineId * 1;
@@ -16,6 +17,7 @@ const EditRoutine = ({ routines, editRoutine, setEditRoutine, token }) => {
         routines[i] = editedRoutine;
       }
     }
+    navigate('/routines')
   }
   return (
     <>
