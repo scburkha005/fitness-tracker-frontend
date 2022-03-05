@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://evening-wave-11430.herokuapp.com/api'
+  baseURL: 'https://evening-wave-11430.herokuapp.com/api/users'
 })
 
 export const register = async ({ username, password }) => {
   try {
-    const { data } = await api.post('/users/register', {
+    const { data } = await api.post('/register', {
       username,
       password
     });
@@ -19,7 +19,7 @@ export const register = async ({ username, password }) => {
 
 export const login = async ({ username, password }) =>  {
   try {
-    const { data } = await api.post('/users/login', {
+    const { data } = await api.post('/login', {
       username,
       password
     });
