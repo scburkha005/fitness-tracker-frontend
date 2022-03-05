@@ -1,12 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from 'react-router';
 import {fetchRoutines} from '../api';
 import RoutineSingle from './routineSingle';
 import './routines.css';
 
-const Routines = ({token, user}) => {
+const Routines = ({token, user, routines, setRoutines}) => {
     const navigate = useNavigate();
-    const [routines, setRoutines] = useState([])
     
     const getRoutines = async () => {
         setRoutines(await fetchRoutines())  

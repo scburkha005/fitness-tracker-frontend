@@ -1,14 +1,13 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { Home, AccountForm, ButtonLogout, Routines, Activities, AddActivity, MyRoutines, RoutinesByActivity, AddRoutine } from './';
+import { Home, AccountForm, ButtonLogout, Routines, Activities, AddActivity, MyRoutines, RoutinesByActivity, AddRoutine, EditRoutine } from './';
 import { getUser } from '../api/usersApi';
-import RoutinesForm from './RoutinesForm';
-import EditRoutine from './EditRoutine';
 
 const App = () => {
   const [token, setToken] = useState('');
   const [user, setUser] = useState({});
+  const [routines, setRoutines] = useState([])
 
   //grab token from localStorage if it exists
   useEffect(() => {
@@ -46,9 +45,9 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route exact path='/account/:method' element={<AccountForm setToken={setToken}/>} />
-        <Route path='/routines' element={<Routines token={token} user={user}/>}/>
-        <Route exact path='/routines/add' element={<AddRoutine />} />
-        <Route exact path='/routines/edit/:routineid' element={<EditRoutine />} />
+        <Route path='/routines' element={<Routines token={token} user={user} routines={routines} setRoutines={setRoutines}/>}/>
+        <Route exact path='/routines/add' element={<AddRoutine routines={routines} setRoutines={setRoutines}/>} />
+        <Route exact path='/routines/edit/:routineid' element={<EditRoutine routines={routines}/>} />
         <Route path='/activities' element={<Activities token={token}/>} />
         <Route path='/myroutines' element={<MyRoutines token={token}/>} />
         <Route exact path='/activities/add' element={<AddActivity token={token}/>} />
