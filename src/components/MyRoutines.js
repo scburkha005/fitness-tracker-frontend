@@ -1,5 +1,6 @@
 import { useQuery } from 'react-query';
 import * as api from '../api/usersApi';
+import RoutineSingle from './routineSingle';
 
 const MyRoutines = ({ token }) => {
 
@@ -10,11 +11,22 @@ const MyRoutines = ({ token }) => {
     queryFn: async () => await api.getRoutinesByUsername(username),
     enabled: Boolean(username)
   });
-  console.log(routines)
+
+  if (isLoading || loadingRoutines) {
+    return "Loading..."
+  }
 
   return (
     <>
-
+      {
+        routines?.length > 0 ?
+        routines.map((routine) => {
+          return (
+            <RoutineSingle routine={routine}/>
+          )
+        })
+        : <div>You haven't created any routines yet</div>
+      }
     </>
   )
 }
