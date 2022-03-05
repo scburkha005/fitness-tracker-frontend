@@ -4,12 +4,17 @@ import RoutineSingle from './routineSingle';
 
 const MyRoutines = ({ token }) => {
 
-  const { data: { username }, isLoading } = useQuery(['user'], async () => await api.getUser(token));
+  const { data: user , isLoading } = useQuery({
+    enabled: Boolean(token),
+    queryKey: ['user'],
+    queryFn: async () => await api.getUser(token)
+  })
+
   //enabled to only run once the username is defined from the first query
   const { data: routines, isLoading: loadingRoutines } = useQuery({
-    queryKey: ['routinesByUsername', username],
-    queryFn: async () => await api.getRoutinesByUsername(username),
-    enabled: Boolean(username)
+    enabled: Boolean(user),
+    queryKey: ['routinesByUsername', user],
+    queryFn: async () => await api.getRoutinesByUsername(user)
   });
 
   if (isLoading || loadingRoutines) {
