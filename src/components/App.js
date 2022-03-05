@@ -38,7 +38,7 @@ const App = () => {
         <Route exact path='/account/:method' element={<AccountForm setToken={setToken}/>} />
         <Route path='/routines' element={<Routines />}/>
         <Route path='/activities' element={<Activities token={token}/>} />
-        <Route path='/myroutines' element={<MyRoutines />} />
+        <Route path='/myroutines' element={<MyRoutines token={token}/>} />
         <Route exact path='/activities/add' element={<AddActivity token={token}/>} />
         <Route exact path='/activities/:activityId/routines' element={<RoutinesByActivity />} />
       </Routes>
