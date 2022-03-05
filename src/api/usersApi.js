@@ -44,7 +44,7 @@ export const getUser = async (token) => {
   }
 }
 
-export const getRoutinesByUsername = async (username) => {
+export const getRoutinesByUsername = async ({ username }) => {
   try {
     const { data } = await api({
       url: `/${username}/routines`,
