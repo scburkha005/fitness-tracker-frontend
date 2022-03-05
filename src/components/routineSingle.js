@@ -1,5 +1,5 @@
 import ActivitiesSingle from "./ActivitiesSingle";
-
+import './routineSingle.css';
 
 const RoutineSingle = ({routine}) => {
     // Name:
@@ -11,21 +11,18 @@ const RoutineSingle = ({routine}) => {
 
     return (
         <div className="routine-single">
-            <h3>Creator:</h3>
-            <div>
-                {routine.creatorName}
-            </div>
-            <h3>Name:</h3>
+            <div>Name:</div>
             <div>
                 {routine.name}
             </div>
-            <h3>Goal:</h3>
+            <div>Goal:</div>
             <div>
                 {routine.goal}
             </div>
             {routine.activities.map(activity => {
             return <ActivitiesSingle key={activity.id} activity={activity}/>
            })}
+            <div>Created By: {routine.creatorName}</div>
         </div>
 
 
