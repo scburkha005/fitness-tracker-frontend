@@ -1,14 +1,9 @@
 import ActivitiesSingle from "./ActivitiesSingle";
 import './routineSingle.css';
 
-const RoutineSingle = ({routine}) => {
-    // Name:
-    // Description:
-    // Duration:
-    // Count:
-    console.log(routine)
+const RoutineSingle = ({routine, user}) => {
 
-
+    console.log(routine, user)
     return (
         <div className="routine-single">
             <div>Name:</div>
@@ -24,10 +19,7 @@ const RoutineSingle = ({routine}) => {
            })}
             <div>Created By: {routine.creatorName}</div>
         </div>
-
-
-
-
     )
 }
+
 export default RoutineSingle;
