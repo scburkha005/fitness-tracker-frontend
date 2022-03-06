@@ -15,17 +15,15 @@ const Routines = ({token, user, routines, setRoutines, setEditRoutine}) => {
         getRoutines();
     }, [])
     
-return (
-    <div className='routines'>
-        {token && <button onClick={() => navigate('/routines/add')}>Add Routine</button>}
-        {routines.map(routine => {
-            return (
-            <RoutineSingle key={routine.id} routine={routine} user={user} setEditRoutine={setEditRoutine} token={token} routines={routines} setRoutines={setRoutines} />
-            )
-        })}
-    </div>
-
-
-)
+    return (
+        <div className='routines'>
+            {token && <button onClick={() => navigate('/routines/add')}>Add Routine</button>}
+            {routines.map(routine => {
+                return (
+                <RoutineSingle key={routine.id} routine={routine} user={user} setEditRoutine={setEditRoutine} token={token} routines={routines} setRoutines={setRoutines} />
+                )
+            })}
+        </div>
+    )
 }
 export default Routines;
