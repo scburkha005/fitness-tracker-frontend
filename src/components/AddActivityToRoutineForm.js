@@ -20,12 +20,12 @@ const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutin
       }
     },
     // onSuccess update the editRoutine to contain the new activity
-    onSuccess: ({duration, count, activityId, routineId: id}) => {
+    onSuccess: ({duration, count, activityId, id}) => {
       // find activity by id
       const { name, description } = activities.find(activity => activity.id === activityId);
       // build updatedRoutine and push new activity onto nested array
       let newEditRoutine = {...editRoutine}
-      newEditRoutine.activities.push({id, name, description, duration, count});
+      newEditRoutine.activities.push({id: activityId, name, description, duration, count, routineActivityId: id});
       setEditRoutine(newEditRoutine)
     }
   });
