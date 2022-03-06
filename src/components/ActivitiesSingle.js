@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import './ActivitiesSingle.css';
 
 const ActivitiesSingle = ({ activity: { id, name, description, count, duration } }) => {
   const navigate = useNavigate();

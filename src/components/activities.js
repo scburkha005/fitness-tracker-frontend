@@ -2,6 +2,7 @@ import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router';
 import { fetchActivities } from '../api/activitiesApi';
 import ActivitiesSingle from './ActivitiesSingle';
+import './activities.css';
 
 const Activities = ({ token }) => {
   const navigate = useNavigate();
@@ -23,11 +24,13 @@ const Activities = ({ token }) => {
   return (
     <>
       {token && <button onClick={() => navigate('/activities/add')}>Add Activity</button>}
-      {activities.length > 0 && activities.map((activity) => {
-        return (
-          <ActivitiesSingle key={`${activity.id}-${activity.name}`}activity={activity} />
-        )
-      })}
+      <div className='activities'>
+        {activities.length > 0 && activities.map((activity) => {
+          return (
+            <ActivitiesSingle key={`${activity.id}-${activity.name}`}activity={activity} />
+          )
+        })}
+      </div>
     </>
   )
 }
