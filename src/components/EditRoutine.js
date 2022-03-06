@@ -29,7 +29,7 @@ const EditRoutine = ({ routines, editRoutine, setEditRoutine, token, user }) => 
         <h2>Editing Routine: </h2>
         <button onClick={() => navigate(-1)}>Cancel</button>
         <div className='routines'>
-          <RoutineSingle routine={editRoutine}/>
+          <RoutineSingle routine={editRoutine} user={user}/>
         </div>
         <RoutinesForm handleSubmit={handleEdit} singleRoutine={editRoutine} setSingleRoutine={setEditRoutine}/>
         <AddActivityToRoutineForm routineId={routineId} token={token} editRoutine={editRoutine} setEditRoutine={setEditRoutine}/>
