@@ -23,7 +23,7 @@ return (
 
         
         return (
-           <RoutineSingle key={routine.id} routine={routine} user={user} setEditRoutine={setEditRoutine} token={token} routines={routines} />
+           <RoutineSingle key={routine.id} routine={routine} user={user} setEditRoutine={setEditRoutine} token={token} routines={routines} setRoutines={setRoutines} />
         )
     })}
     </div>
