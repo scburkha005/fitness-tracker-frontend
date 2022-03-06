@@ -11,7 +11,7 @@ const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRouti
         setEditRoutine(routine);
         navigate(`/routines/edit/${routine.id}`);
     }
-    //standard useState react delete
+    //standard useState react delete - deletes when on the /routines route
     const handleDelete = async (e) => {
         e.preventDefault();
         try {
@@ -24,7 +24,7 @@ const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRouti
         navigate('/routines')
     }
 
-    //useQuery method of deleting
+    //useQuery method of deleting - deletes when on the /myroutines route
     const handleDeleteViaQuery = async (e) => {
         e.preventDefault();
         mutate({ routineId: routine.id, token });
