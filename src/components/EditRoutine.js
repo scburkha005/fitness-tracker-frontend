@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router";
 import { updateRoutine } from "../api/routinesApi";
+import AddActivityToRoutine from "./AddActivityToRoutineForm";
 import RoutinesForm from "./RoutinesForm";
 import RoutineSingle from "./routineSingle";
 
@@ -29,6 +30,7 @@ const EditRoutine = ({ routines, editRoutine, setEditRoutine, token }) => {
         <RoutineSingle routine={editRoutine}/>
       </div>
       <RoutinesForm handleSubmit={handleEdit} singleRoutine={editRoutine} setSingleRoutine={setEditRoutine}/>
+      <AddActivityToRoutine />
     </>
   )
 }
