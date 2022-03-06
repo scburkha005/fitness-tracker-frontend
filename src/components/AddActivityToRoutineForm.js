@@ -43,7 +43,6 @@ const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutin
   }
 
   const { activityId, count, duration } = routineFields;
-  console.log(activityId, count, duration)
   return (
     <>
       <h2>Add Activities to Routine</h2>
