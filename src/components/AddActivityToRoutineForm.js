@@ -1,19 +1,45 @@
 import { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { updateState } from './utils';
 import { fetchActivities } from '../api/activitiesApi';
+import * as api from '../api/routinesApi';
 
-const AddActivityToRoutineForm = ({ routineId, token}) => {
-  const [routineFields, setRoutineFields] = useState({activityId: 0, count: 0, duration: 0});
+const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutine }) => {
+  const [message, setMessage] = useState('');
+  // init activityId to 1 in the case that the user never changes the field => first activity displayed is always id 1
+  const [routineFields, setRoutineFields] = useState({activityId: 1, count: 0, duration: 0});
 
   const { data: activities } = useQuery('activities', async () => await fetchActivities());
+
+  const { mutate } = useMutation(api.addActivityToRoutine, {
+    onError: ({ data: { message }}) => {
+      if (message === 'duplicate key value violates unique constraint "routine_activities_routineId_activityId_key"') {
+        setMessage('That activity already exists, please edit instead');
+      } else {
+        setMessage(message);
+      }
+    },
+    // onSuccess update the editRoutine to contain the new activity
+    onSuccess: ({duration, count, activityId, routineId: id}) => {
+      // find activity by id
+      const { name, description } = activities.find(activity => activity.id === activityId);
+      // build updatedRoutine and push new activity onto nested array
+      let newEditRoutine = {...editRoutine}
+      newEditRoutine.activities.push({id, name, description, duration, count});
+      setEditRoutine(newEditRoutine)
+    }
+  });
 
   const handleChange = (e) => {
     updateState(e, routineFields, setRoutineFields)
   }
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    // mutate requires a single param or object, so let's build that object with all req info
+    let mutateFields = { ...routineFields, routineId };
+    mutate(mutateFields);
   }
 
   const { activityId, count, duration } = routineFields;
@@ -21,6 +47,7 @@ const AddActivityToRoutineForm = ({ routineId, token}) => {
   return (
     <>
       <h2>Add Activities to Routine</h2>
+      {message && <div>{message}</div>}
       <form onSubmit={handleSubmit}>
         <select name='activityId' value={activityId} onChange={handleChange}>
             {activities?.map(activity => {
