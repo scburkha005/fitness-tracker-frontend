@@ -39,7 +39,7 @@ const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRouti
                 <div>Goal:</div>
                 <div>{goal}</div>
                 {routine.activities?.map(activity => {
-                return <ActivitiesSingle key={activity.id} activity={activity} user={user} setEditRoutine={setEditRoutine} token={token}/>
+                return <ActivitiesSingle key={activity.id} activity={activity} user={user} setEditRoutine={setEditRoutine} token={token} editRoutine={routine}/>
             })}
                 <div>Created By: {creatorName}</div>
             </div>
