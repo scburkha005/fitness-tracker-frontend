@@ -7,16 +7,28 @@ const api = axios.create({
 export const updateRoutine = async ({routineId, fields, token}) => {
   try {
     const { data } = await api({
-      method: 'post',
+      method: 'patch',
       url: `/${routineId}`,
       headers: {'Authorization': `Bearer ${token}`},
-      body: {
-        fields
-      }
+      data: fields
     });
 
     return data;
   } catch ({ response: error }) {
     console.error(error);
+  }
+}
+
+export const deleteRoutine = async ({ routineId, token }) => {
+  try {
+    const { data } = await api({
+      method: 'delete',
+      url: `/${routineId}`,
+      headers: {'Authorization': `Bearer ${token}`},
+    });
+
+    return data;
+  } catch ({ response: error }) {
+    throw error;
   }
 }

@@ -46,11 +46,11 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route exact path='/account/:method' element={<AccountForm setToken={setToken}/>} />
-        <Route path='/routines' element={<Routines token={token} user={user} routines={routines} setRoutines={setRoutines}/>}/>
+        <Route path='/routines' element={<Routines token={token} user={user} routines={routines} setRoutines={setRoutines} setEditRoutine={setEditRoutine}/>}/>
         <Route exact path='/routines/add' element={<AddRoutine routines={routines} setRoutines={setRoutines}/>} />
-        <Route exact path='/routines/edit/:routineid' element={<EditRoutine routines={routines} editRoutine={editRoutine} setEditRoutine={setEditRoutine}/>} />
+        <Route exact path='/routines/edit/:routineid' element={<EditRoutine routines={routines} editRoutine={editRoutine} setEditRoutine={setEditRoutine} token={token}/>} />
         <Route path='/activities' element={<Activities token={token}/>} />
-        <Route path='/myroutines' element={<MyRoutines token={token}/>} />
+        <Route path='/myroutines' element={<MyRoutines token={token} setEditRoutine={setEditRoutine} />} />
         <Route exact path='/activities/add' element={<AddActivity token={token}/>} />
         <Route exact path='/activities/:activityId/routines' element={<RoutinesByActivity />} />
       </Routes>
