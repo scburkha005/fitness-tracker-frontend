@@ -3,7 +3,7 @@ import { deleteRoutine } from "../api/routinesApi";
 import ActivitiesSingle from "./ActivitiesSingle";
 import './routineSingle.css';
 
-const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRoutines, handleDeleteViaQuery}) => {
+const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRoutines, mutate}) => {
     const navigate = useNavigate();
     const {name, goal, creatorName} = routine;
 
@@ -11,17 +11,23 @@ const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRouti
         setEditRoutine(routine);
         navigate(`/routines/edit/${routine.id}`);
     }
-
+    //standard useState react delete
     const handleDelete = async (e) => {
         e.preventDefault();
         try {
-            const deletedRoutine = await deleteRoutine(routine.id, token);
+            const deletedRoutine = await deleteRoutine({ routineId: routine.id, token });
             const updatedRoutines = routines.filter(routine => routine.id !== deletedRoutine.id)
             setRoutines(updatedRoutines);
         } catch (err) {
             console.error(err);
         }
         navigate('/routines')
+    }
+
+    //useQuery method of deleting
+    const handleDeleteViaQuery = async (e) => {
+        e.preventDefault();
+        mutate({ routineId: routine.id, token });
     }
 
     return (
@@ -39,7 +45,7 @@ const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRouti
             { user &&
             <form className="routine-single-button-form">
                 {user.id === routine.creatorId && <button onClick={handleEdit} className='routine-single-edit-button'>Edit</button>}
-                {user.id === routine.creatorId && <button onClick={handleDeleteViaQuery || handleDelete} className='routine-single-delete-button'>Delete</button>}
+                {user.id === routine.creatorId && <button onClick={mutate ? handleDeleteViaQuery : handleDelete} className='routine-single-delete-button'>Delete</button>}
             </form>
             }
         </> 
