@@ -3,7 +3,7 @@ import { deleteRoutine } from "../api/routinesApi";
 import ActivitiesSingle from "./ActivitiesSingle";
 import './routineSingle.css';
 
-const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRoutines}) => {
+const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRoutines, handleDeleteViaQuery}) => {
     const navigate = useNavigate();
     const {name, goal, creatorName} = routine;
 
@@ -23,6 +23,7 @@ const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRouti
         }
         navigate('/routines')
     }
+
     return (
         <>
             <div className="routine-single">
@@ -38,7 +39,7 @@ const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRouti
             { user &&
             <form className="routine-single-button-form">
                 {user.id === routine.creatorId && <button onClick={handleEdit} className='routine-single-edit-button'>Edit</button>}
-                {user.id === routine.creatorId && <button onClick={handleDelete} className='routine-single-delete-button'>Delete</button>}
+                {user.id === routine.creatorId && <button onClick={handleDeleteViaQuery || handleDelete} className='routine-single-delete-button'>Delete</button>}
             </form>
             }
         </> 
