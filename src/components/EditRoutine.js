@@ -30,7 +30,7 @@ const EditRoutine = ({ routines, editRoutine, setEditRoutine, token }) => {
         <RoutineSingle routine={editRoutine}/>
       </div>
       <RoutinesForm handleSubmit={handleEdit} singleRoutine={editRoutine} setSingleRoutine={setEditRoutine}/>
-      <AddActivityToRoutineForm routineId={routineId} token={token} />
+      <AddActivityToRoutineForm routineId={routineId} token={token} editRoutine={editRoutine} setEditRoutine={setEditRoutine}/>
     </>
   )
 }
