@@ -1,10 +1,11 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { deleteRoutine } from "../api/routinesApi";
 import ActivitiesSingle from "./ActivitiesSingle";
 import './routineSingle.css';
 
 const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRoutines, mutate}) => {
     const navigate = useNavigate();
+    const location = useLocation();
     const {name, goal, creatorName} = routine;
 
     const handleEdit = async () => {
@@ -29,6 +30,7 @@ const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRouti
         e.preventDefault();
         mutate({ routineId: routine.id, token });
     }
+    console.log(location.pathname)
 
     return (
         <>
@@ -38,11 +40,12 @@ const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRouti
                 <div>Goal:</div>
                 <div>{goal}</div>
                 {routine.activities?.map(activity => {
-                return <ActivitiesSingle key={activity.id} activity={activity}/>
+                return <ActivitiesSingle key={activity.id} activity={activity} user={user}/>
             })}
                 <div>Created By: {creatorName}</div>
             </div>
-            { user &&
+            {// when the pathname includes edit, dont render edit delete button
+            !location.pathname.includes('edit') &&
             <form className="routine-single-button-form">
                 {user.id === routine.creatorId && <button onClick={handleEdit} className='routine-single-edit-button'>Edit</button>}
                 {user.id === routine.creatorId && <button onClick={mutate ? handleDeleteViaQuery : handleDelete} className='routine-single-delete-button'>Delete</button>}
