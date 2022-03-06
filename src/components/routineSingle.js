@@ -30,7 +30,6 @@ const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRouti
         e.preventDefault();
         mutate({ routineId: routine.id, token });
     }
-    console.log(location.pathname)
 
     return (
         <>
