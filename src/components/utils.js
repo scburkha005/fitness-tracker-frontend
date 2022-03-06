@@ -1,4 +1,6 @@
 export const updateState = (e, state, setState) => {
-  const { placeholder, value } = e.target;
-  setState({...state, [placeholder]: value})
+  const { placeholder, name, value } = e.target;
+  let keySetter = placeholder || name;
+  console.log(keySetter, value)
+  setState({...state, [keySetter]: value})
 }

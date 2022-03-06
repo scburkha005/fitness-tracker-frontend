@@ -32,3 +32,17 @@ export const deleteRoutine = async ({ routineId, token }) => {
     throw error;
   }
 }
+
+export const addActivityToRoutine = async ({routineId, ...fields}) => {
+  try {
+    const { data } = await api({
+      method: 'post',
+      url: `${routineId}/activities`,
+      data: fields
+    });
+
+    return data;
+  } catch ({ response: error }) {
+    throw error;
+  }
+}
