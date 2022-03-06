@@ -19,7 +19,9 @@ const EditRoutine = ({ routines, editRoutine, setEditRoutine, token, user }) => 
         routines[i] = editedRoutine;
       }
     }
-    navigate('/routines')
+    //build full edited routine
+    const updatedRoutine = { ...editRoutine, name: editedRoutine.name, goal: editedRoutine.goal }
+    setEditRoutine(updatedRoutine)
   }
 
   return (
