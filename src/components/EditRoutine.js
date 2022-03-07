@@ -13,15 +13,19 @@ const EditRoutine = ({ routines, editRoutine, setEditRoutine, token, user }) => 
   const handleEdit = async (e) => {
     e.preventDefault();
     const fields = { name, goal };
-    const editedRoutine = await updateRoutine({ routineId, fields, token });
-    for (let i = 0; i < routines.length; i++) {
-      if (routines[i].id === routineId) {
-        routines[i] = editedRoutine;
+    try {
+      const editedRoutine = await updateRoutine({ routineId, fields, token });
+      for (let i = 0; i < routines.length; i++) {
+        if (routines[i].id === routineId) {
+          routines[i] = editedRoutine;
+        }
       }
+      //build full edited routine
+      const updatedRoutine = { ...editRoutine, name: editedRoutine.name, goal: editedRoutine.goal }
+      setEditRoutine(updatedRoutine);
+    } catch (err) {
+      console.error(err);
     }
-    //build full edited routine
-    const updatedRoutine = { ...editRoutine, name: editedRoutine.name, goal: editedRoutine.goal }
-    setEditRoutine(updatedRoutine)
   }
 
   return (
