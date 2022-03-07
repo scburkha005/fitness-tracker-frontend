@@ -8,7 +8,7 @@ const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRouti
     const location = useLocation();
     const {name, goal, creatorName} = routine;
 
-    const handleEdit = async () => {
+    const handleEdit = () => {
         setEditRoutine(routine);
         navigate(`/routines/edit/${routine.id}`);
     }
@@ -26,7 +26,7 @@ const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRouti
     }
 
     //useQuery method of deleting - deletes when on the /myroutines route
-    const handleDeleteViaQuery = async (e) => {
+    const handleDeleteViaQuery = (e) => {
         e.preventDefault();
         mutate({ routineId: routine.id, token });
     }
