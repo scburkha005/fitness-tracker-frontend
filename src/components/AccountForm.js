@@ -34,13 +34,13 @@ const AccountForm = ({ setToken }) => {
     return "Loading..."
   }
   
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     mutate(userFields);
   }
 
-  const handleChange = async (e) => {
+  const handleChange = (e) => {
     updateState(e, userFields, setUserFields);
   }
 

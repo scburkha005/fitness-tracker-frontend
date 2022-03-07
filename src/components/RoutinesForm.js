@@ -3,7 +3,7 @@ import { updateState } from './utils';
 const RoutinesForm = ({ handleSubmit, singleRoutine, setSingleRoutine }) => {
   //singleRoutine format = { name, goal }
 
-  const handleChange = async (e) => {
+  const handleChange = (e) => {
     updateState(e, singleRoutine, setSingleRoutine);
   }
 

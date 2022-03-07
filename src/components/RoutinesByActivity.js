@@ -13,7 +13,7 @@ const RoutinesByActivity = () => {
   }
 
   return (
-    <>
+    <div className='routines'>
       {
         routines?.length > 0 ?
         routines.map((routine) => {
@@ -23,7 +23,7 @@ const RoutinesByActivity = () => {
         })
         : <div>No Routines exist with that activity</div>
       }
-    </>
+    </div>
   )
 }
 

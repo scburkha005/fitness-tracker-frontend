@@ -1,13 +1,14 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { deleteRoutine } from "../api/routinesApi";
 import ActivitiesSingle from "./ActivitiesSingle";
 import './routineSingle.css';
 
 const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRoutines, mutate}) => {
     const navigate = useNavigate();
+    const location = useLocation();
     const {name, goal, creatorName} = routine;
 
-    const handleEdit = async () => {
+    const handleEdit = () => {
         setEditRoutine(routine);
         navigate(`/routines/edit/${routine.id}`);
     }
@@ -25,7 +26,7 @@ const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRouti
     }
 
     //useQuery method of deleting - deletes when on the /myroutines route
-    const handleDeleteViaQuery = async (e) => {
+    const handleDeleteViaQuery = (e) => {
         e.preventDefault();
         mutate({ routineId: routine.id, token });
     }
@@ -38,14 +39,15 @@ const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRouti
                 <div>Goal:</div>
                 <div>{goal}</div>
                 {routine.activities?.map(activity => {
-                return <ActivitiesSingle key={activity.id} activity={activity}/>
+                return <ActivitiesSingle key={activity.id} activity={activity} user={user} setEditRoutine={setEditRoutine} token={token} editRoutine={routine}/>
             })}
                 <div>Created By: {creatorName}</div>
             </div>
-            { user &&
+            {// when the pathname includes edit, dont render edit delete button
+            !location.pathname.includes('edit') &&
             <form className="routine-single-button-form">
-                {user.id === routine.creatorId && <button onClick={handleEdit} className='routine-single-edit-button'>Edit</button>}
-                {user.id === routine.creatorId && <button onClick={mutate ? handleDeleteViaQuery : handleDelete} className='routine-single-delete-button'>Delete</button>}
+                {user?.id === routine.creatorId && <button onClick={handleEdit} className='routine-single-edit-button'>Edit</button>}
+                {user?.id === routine.creatorId && <button onClick={mutate ? handleDeleteViaQuery : handleDelete} className='routine-single-delete-button'>Delete</button>}
             </form>
             }
         </> 

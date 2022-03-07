@@ -1,0 +1,16 @@
+.singleActivity {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 15rem;
+  min-height: 5rem;
+  margin: 5px;
+}
+
+.singleActivity-name {
+  color: rgb(52, 116, 255);
+}
+
+.singleActivity-name:hover {
+  cursor: pointer;
+}
