@@ -32,6 +32,7 @@ const App = () => {
   return (
     <div className="App">
       <nav className='navbar'>
+        <Link to='/'>Home</Link>
         <Link to='/routines'>Routines</Link>
         {
           token && <Link to='/myroutines'>My Routines</Link>
