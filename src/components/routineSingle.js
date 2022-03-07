@@ -46,8 +46,8 @@ const RoutineSingle = ({routine, user, setEditRoutine, token, routines, setRouti
             {// when the pathname includes edit, dont render edit delete button
             !location.pathname.includes('edit') &&
             <form className="routine-single-button-form">
-                {user.id === routine.creatorId && <button onClick={handleEdit} className='routine-single-edit-button'>Edit</button>}
-                {user.id === routine.creatorId && <button onClick={mutate ? handleDeleteViaQuery : handleDelete} className='routine-single-delete-button'>Delete</button>}
+                {user?.id === routine.creatorId && <button onClick={handleEdit} className='routine-single-edit-button'>Edit</button>}
+                {user?.id === routine.creatorId && <button onClick={mutate ? handleDeleteViaQuery : handleDelete} className='routine-single-delete-button'>Delete</button>}
             </form>
             }
         </> 
