@@ -41,7 +41,7 @@ const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutin
   const handleChange = (e) => {
     updateState(e, activityAddFields, setActivityAddFields)
   }
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     // mutate requires a single param or object, so let's build that object with all req info
