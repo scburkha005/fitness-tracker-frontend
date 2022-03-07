@@ -32,6 +32,6 @@ export const editActivityByRoutineActivityId = async ({ routineActivityId, token
 
     return data;
   } catch ({ response: err }) {
-    console.error(err);
+    throw err;
   }
 }
