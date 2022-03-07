@@ -17,11 +17,13 @@ const AddActivity = ({ token }) => {
     <>
       <button onClick={() => navigate('/activities')}>Cancel</button>
       <ActivitiesForm token={token} />
-      {activities?.length > 0 && activities.map((activity) => {
-        return (
-          <ActivitiesSingle key={`${activity.id}-${activity.name}`}activity={activity} />
-        )
-      })}
+      <div className="activities">
+        {activities?.length > 0 && activities.map((activity) => {
+          return (
+            <ActivitiesSingle key={`${activity.id}-${activity.name}`}activity={activity} />
+          )
+        })}
+      </div>
     </>
   )
 }
