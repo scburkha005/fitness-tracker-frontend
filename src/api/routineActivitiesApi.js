@@ -17,3 +17,21 @@ export const deleteActivityByRoutineActivityId = async ({ routineActivityId, tok
     console.error(err);
   }
 }
+
+export const editActivityByRoutineActivityId = async ({ routineActivityId, token, editCount: count, editDuration: duration }) => {
+  try {
+    const { data } = await api({
+      method: 'patch',
+      url: `/${routineActivityId}`,
+      headers: {'Authorization': `Bearer ${token}`},
+      data: {
+        count,
+        duration
+      }
+    })
+
+    return data;
+  } catch ({ response: err }) {
+    console.error(err);
+  }
+}
