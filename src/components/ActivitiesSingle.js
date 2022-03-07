@@ -28,7 +28,7 @@ const ActivitiesSingle = ({ activity: { id, name, description, count, duration, 
   return (
     <>
       <div className='singleActivity'>
-        <div>Name: <span onClick={() => navigate(`/activities/${id}/routines`)}>{name}</span></div>
+        <div>Name: <span className='singleActivity-name' onClick={() => navigate(`/activities/${id}/routines`)}>{name}</span></div>
         <div>{`Description: ${description}`}</div>
         {count && <div>{`Count: ${count}`}</div>}
         {duration && <div>{`Duration: ${duration}`}</div>}

@@ -6,3 +6,11 @@
   min-height: 5rem;
   margin: 5px;
 }
+
+.singleActivity-name {
+  color: rgb(52, 116, 255);
+}
+
+.singleActivity-name:hover {
+  cursor: pointer;
+}
