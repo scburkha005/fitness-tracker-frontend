@@ -82,9 +82,9 @@ const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutin
             })}
         </select>
         <label>Count</label>
-        <input value={count} placeholder='count' type='number' onChange={handleChange}/>
+        <input value={count} name='count' type='number' onChange={handleChange}/>
         <label>Duration</label>
-        <input value={duration} placeholder='duration' type='number' onChange={handleChange}/>
+        <input value={duration} name='duration' type='number' onChange={handleChange}/>
         <button>Add Activity</button>
       </form>
       <h2>Edit Activity</h2>
@@ -100,9 +100,9 @@ const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutin
             })}
         </select>
         <label>Count</label>
-        <input value={editCount} placeholder='editCount' type='number' onChange={handleEditChange}/>
+        <input value={editCount} name='editCount' type='number' onChange={handleEditChange}/>
         <label>Duration</label>
-        <input value={editDuration} placeholder='editDuration' type='number' onChange={handleEditChange}/>
+        <input value={editDuration} name='editDuration' type='number' onChange={handleEditChange}/>
         <button>Edit Activity</button>
       </form>
     </>
