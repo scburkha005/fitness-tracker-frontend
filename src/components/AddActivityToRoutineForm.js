@@ -56,12 +56,19 @@ const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutin
     e.preventDefault();
     try {
       const editedActivity = await editActivityByRoutineActivityId({ ...activityEditFields, token });
+      // update our editRoutine locally
       console.log(editedActivity)
+      const updatedActivities = editRoutine.activities.map(activity => {
+        if (activity.id === editedActivity.activityId) {
+          return { ...activity, count: editedActivity.count, duration: editedActivity.duration }
+        }
+        return activity
+      })
+      setEditRoutine({ ...editRoutine, activities: updatedActivities });
     } catch (err) {
       console.error(err);
     }
   }
-  console.log(activityEditFields)
 
   const { activityId, count, duration } = activityAddFields;
   const { activityEditId, editCount, editDuration } = activityEditFields;
