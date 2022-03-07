@@ -33,7 +33,7 @@ const ActivitiesForm = ({ token }) => {
 
   const { name, description } = activitiesFormData;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const mutateData = {...activitiesFormData, token}
     mutate(mutateData)
