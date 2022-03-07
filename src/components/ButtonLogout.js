@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const ButtonLogout = ({ setToken, setUser }) => {
   const navigate = useNavigate();
 
-  const handleClick = async () => {
+  const handleClick = () => {
     setToken('');
     setUser({});
     localStorage.removeItem('token');
