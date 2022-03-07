@@ -3,6 +3,7 @@ import { useMutation, useQuery } from 'react-query';
 import { updateState } from './utils';
 import { fetchActivities } from '../api/activitiesApi';
 import * as api from '../api/routinesApi';
+import { editActivityByRoutineActivityId } from '../api/routineActivitiesApi';
 
 const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutine }) => {
   const [message, setMessage] = useState('');
@@ -10,8 +11,8 @@ const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutin
   const [activityAddFields, setActivityAddFields] = useState({activityId: 1, count: 0, duration: 0});
   const [activityEditFields, setActivityEditFields] = useState(() => {
     // initializes our state using the first item in our activities array
-    const { id: activityEditId, duration: editDuration, count: editCount } = editRoutine.activities[0];
-    return { activityEditId, editDuration, editCount }
+    const { id: activityEditId, duration: editDuration, count: editCount, routineActivityId } = editRoutine.activities[0];
+    return { activityEditId, editDuration, editCount, routineActivityId }
   });
 
   const { data: activities } = useQuery('activities', async () => await fetchActivities());
@@ -53,6 +54,12 @@ const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutin
   }
   const handleEditSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const editedActivity = await editActivityByRoutineActivityId({ ...activityEditFields, token });
+      console.log(editedActivity)
+    } catch (err) {
+      console.error(err);
+    }
   }
   console.log(activityEditFields)
 
@@ -77,8 +84,8 @@ const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutin
         <select name='activityEditId' value={activityEditId} onChange={(e) => {
           // onChange initialize our activityEditFields state with info from routines
           // e.target.value = activityId
-          const { id: activityEditId, duration: editDuration, count: editCount } = editRoutine.activities.find(activity => activity.id === Number(e.target.value));
-          setActivityEditFields({ activityEditId, editDuration, editCount });
+          const { id: activityEditId, duration: editDuration, count: editCount, routineActivityId } = editRoutine.activities.find(activity => activity.id === Number(e.target.value));
+          setActivityEditFields({ activityEditId, editDuration, editCount, routineActivityId });
         }}>
             {editRoutine.activities?.map(activity => {
               return <option value={activity.id} key={activity.id}>{activity.name}</option>
