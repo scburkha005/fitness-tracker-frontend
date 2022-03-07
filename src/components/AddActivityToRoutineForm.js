@@ -8,7 +8,11 @@ const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutin
   const [message, setMessage] = useState('');
   // init activityId to 1 in the case that the user never changes the field => first activity displayed is always id 1
   const [activityAddFields, setActivityAddFields] = useState({activityId: 1, count: 0, duration: 0});
-  const [activityEditFields, setActivityEditFields] = useState({});
+  const [activityEditFields, setActivityEditFields] = useState(() => {
+    // initializes our state using the first item in our activities array
+    const { id: activityEditId, duration: editDuration, count: editCount } = editRoutine.activities[0];
+    return { activityEditId, editDuration, editCount }
+  });
 
   const { data: activities } = useQuery('activities', async () => await fetchActivities());
 
@@ -31,10 +35,10 @@ const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutin
     }
   });
 
+  // Add handlers
   const handleChange = (e) => {
     updateState(e, activityAddFields, setActivityAddFields)
   }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -43,12 +47,12 @@ const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutin
     mutate(mutateFields);
   }
 
+  // Edit handlers
   const handleEditChange = (e) => {
     updateState(e, activityEditFields, setActivityEditFields);
   }
-
   const handleEditSubmit = async (e) => {
-
+    e.preventDefault();
   }
   console.log(activityEditFields)
 
@@ -74,7 +78,7 @@ const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutin
           // onChange initialize our activityEditFields state with info from routines
           // e.target.value = activityId
           const { id: activityEditId, duration: editDuration, count: editCount } = editRoutine.activities.find(activity => activity.id === Number(e.target.value));
-          setActivityEditFields({activityEditId, editDuration, editCount });
+          setActivityEditFields({ activityEditId, editDuration, editCount });
         }}>
             {editRoutine.activities?.map(activity => {
               return <option value={activity.id} key={activity.id}>{activity.name}</option>
