@@ -34,7 +34,6 @@ const ActivitiesSingle = ({ activity: { id, name, description, count, duration, 
         {duration && <div>{`Duration: ${duration}`}</div>}
         { user?.id && location.pathname.includes('edit') &&
         <form className="activities-single-button-form">
-            {/* <button onClick={handleEdit} className='activities-single-edit-button'>Edit</button> */}
             <button onClick={handleDelete} className='activities-single-delete-button'>Delete</button>
         </form>
         }
