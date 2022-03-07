@@ -7,6 +7,7 @@ import { editActivityByRoutineActivityId } from '../api/routineActivitiesApi';
 
 const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutine }) => {
   const [message, setMessage] = useState('');
+  const [editMessage, setEditMessage] = useState('');
   // init activityId to 1 in the case that the user never changes the field => first activity displayed is always id 1
   const [activityAddFields, setActivityAddFields] = useState({activityId: 1, count: 0, duration: 0});
   const [activityEditFields, setActivityEditFields] = useState(() => {
@@ -65,12 +66,14 @@ const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutin
       })
       setEditRoutine({ ...editRoutine, activities: updatedActivities });
     } catch (err) {
+      setEditMessage(err.data.message)
       console.error(err);
     }
   }
 
   const { activityId, count, duration } = activityAddFields;
   const { activityEditId, editCount, editDuration } = activityEditFields;
+  console.log(activityEditFields)
   return (
     <>
       <h2>Add Activities to Routine</h2>
@@ -88,6 +91,7 @@ const AddActivityToRoutineForm = ({ routineId, token, editRoutine, setEditRoutin
         <button>Add Activity</button>
       </form>
       <h2>Edit Activity</h2>
+      {editMessage && <div>{editMessage}</div>}
       <form onSubmit={handleEditSubmit}>
         <select name='activityEditId' value={activityEditId} onChange={(e) => {
           // onChange initialize our activityEditFields state with info from routines
